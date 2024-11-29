@@ -69,6 +69,9 @@ Setting this environment variable to true will enable FIPS endpoints for all AWS
   WantedBy=multi-user.target
   ```
 
+## Teleport license.pem
+
+Teleport with FIPS enabled requries having a `license.pem`. This Demo expects the license.pem file to exist in the terraform folder.  
 
 ## Set Up GitHub SSO
 

@@ -444,5 +444,7 @@ log "Configuring FIPS Mode for Amazon Linux 2023"
 # https://docs.aws.amazon.com/linux/al2023/ug/fips-mode.html
 dnf -y install crypto-policies crypto-policies-scripts
 fips-mode-setup --enable
+
+log "Rebooting to enable FIPS Mode"
 reboot
 # fips-mode-setup --check
