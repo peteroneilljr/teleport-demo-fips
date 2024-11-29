@@ -1,6 +1,7 @@
 # Deploy Teleport Cluster
 
-![Teleport OSS Demo Diagram](./img/architecture.png "Teleport OSS Demo Diagram")
+![Teleport OSS Demo Diagram](./img/architecture.png "Teleport FIPS Demo Diagram")
+![Teleport Resources](./img/resources.png "Dashboard")
 
 ## Docs
 * [Self Hosted Cluster](https://goteleport.com/docs/admin-guides/deploy-a-cluster/linux-demo/)
