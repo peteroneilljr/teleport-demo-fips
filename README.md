@@ -96,7 +96,7 @@ This Demo uses 2 AWS Providers. One to create resource in GovCloud and one to cr
 ```hcl
 teleport_cluster_name = "my-teleport-cluster"
 teleport_email        = "myuser@example.com"
-teleport_version      = "16.4.7"
+teleport_version      = "17.4.1"
 
 aws_gov_region     = "us-gov-west-1"
 aws_gov_access_key = "QWERTYUABT3GN4GKY5R"
@@ -159,8 +159,8 @@ Click the username you'd like connect with.
 
 For MacOS (Homebrew is not recommended)
 ```sh
-curl -O https://cdn.teleport.dev/teleport-16.4.7.pkg
-sudo installer -pkg teleport-16.4.7.pkg -target /
+curl -O https://cdn.teleport.dev/teleport-ent-17.4.1.pkg
+sudo installer -pkg teleport-ent-17.4.1.pkg -target /
 which teleport
 ```
 
