@@ -61,17 +61,17 @@ install_tool "PostgreSQL" "dnf install postgresql15.x86_64 postgresql15-server -
 # ---------------------------------------------------------------------------- #
 # Install FIPS Binary
 # ---------------------------------------------------------------------------- #
-  log "Installing fips tools..."
-  dnf install perl-Digest-SHA -y
+log "Installing fips tools..."
+dnf install perl-Digest-SHA -y
 
-  log "Installing Teleport Fips..."
-  SYSTEM_ARCH="amd64"
-  TELEPORT_FIPS_TAR="teleport-ent-v$TELEPORT_VERSION-linux-$SYSTEM_ARCH-fips-bin.tar.gz"
-  curl https://cdn.teleport.dev/$TELEPORT_FIPS_TAR.sha256
-  curl -O https://cdn.teleport.dev/$TELEPORT_FIPS_TAR
-  shasum -a 256 $TELEPORT_FIPS_TAR
-  tar -xvf $TELEPORT_FIPS_TAR
-  ./teleport-ent/install
+log "Installing Teleport Fips..."
+SYSTEM_ARCH="amd64"
+TELEPORT_FIPS_TAR="teleport-ent-v$TELEPORT_VERSION-linux-$SYSTEM_ARCH-fips-bin.tar.gz"
+curl https://cdn.teleport.dev/$TELEPORT_FIPS_TAR.sha256
+curl -O https://cdn.teleport.dev/$TELEPORT_FIPS_TAR
+shasum -a 256 $TELEPORT_FIPS_TAR
+tar -xvf $TELEPORT_FIPS_TAR
+./teleport-ent/install
 
 # ---------------------------------------------------------------------------- #
 # Configure Teleport
