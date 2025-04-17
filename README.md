@@ -39,7 +39,7 @@ Setting this environment variable to true will enable FIPS endpoints for all AWS
 
 * [Teleport Install](https://goteleport.com/docs/installation/#tar-archives-self-hosted-only)
   ```sh
-  TELEPORT_VERSION="16.4.7"
+  TELEPORT_VERSION="17.4.1"
   SYSTEM_ARCH="amd64"
   curl https://cdn.teleport.dev/teleport-ent-v${TELEPORT_VERSION?}-linux-${SYSTEM_ARCH?}-fips-bin.tar.gz.sha256
   curl -O https://cdn.teleport.dev/teleport-ent-v${TELEPORT_VERSION?}-linux-${SYSTEM_ARCH?}-fips-bin.tar.gz
@@ -202,8 +202,8 @@ Run AWS commands through the Teleport Binary
 ```sh
 tsh apps ls
 tsh apps login aws-console --aws-role TeleportReadOnly20241124230016265200000003
-tsh aws s3 ls
-tsh aws ec2 describe-instances
+AWS_REGION=us-gov-west-1 AWS_USE_FIPS_ENDPOINT=true tsh -d aws s3 ls
+AWS_REGION=us-gov-west-1 AWS_USE_FIPS_ENDPOINT=true tsh aws ec2 describe-instances
 ```
 
 Start a proxy tunnel to use the normal AWS binary.
