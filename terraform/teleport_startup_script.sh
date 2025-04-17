@@ -29,7 +29,7 @@ create_teleport_resource() {
     local resource_name=$1
     local resource_spec=$2
     log "Creating resource: $resource_name..."
-    echo "$resource_spec" | tctl create -f
+    echo "$resource_spec" | tctl create --force
 }
 
 # Create Configuration Files
@@ -92,7 +92,7 @@ teleport:
     audit_sessions_uri: s3://$TELEPORT_S3_SESSIONS/records
   log:
     output: stderr
-    severity: INFO
+    severity: DEBUG
     format:
       output: text
 auth_service:
@@ -104,6 +104,7 @@ auth_service:
   authentication:
     type: github 
     local_auth: false
+  message_of_the_day: "Teleport FIPS Demo"
 ssh_service:
   enabled: yes
   labels:
@@ -202,6 +203,7 @@ spec:
   teams_to_roles:
   - organization: $GH_ORG_NAME
     roles:
+    - auditor
     - editor
     - kube-access
     - db-access
@@ -391,7 +393,7 @@ docker run --detach \
   -v /etc/grafana.ini:/etc/grafana/grafana.ini \
   grafana/grafana
 
-
+tctl rm app/awsconsole
 create_teleport_resource "grafana" "
 kind: app
 version: v3
@@ -402,11 +404,13 @@ metadata:
     env: $TELEPORT_ENVIRONMENT
 spec:
   uri: 'http://localhost:3000'
+  insecure_skip_verify: true
 "
 
 # ---------------------------------------------------------------------------- #
 # AWS Console App
 # ---------------------------------------------------------------------------- #
+tctl rm app/awsconsole
 create_teleport_resource "awsconsole" "
 kind: app
 version: v3

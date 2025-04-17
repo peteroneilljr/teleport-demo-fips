@@ -7,7 +7,7 @@ output teleport_cluster_ssh {
   EOF
 }
 output teleport_cluster_fqdn {
-  value       = aws_route53_record.cluster.fqdn
+  value       = "https://${aws_route53_record.cluster.fqdn}"
 }
 output teleport_tsh_login {
   value       = "tsh login --proxy=${var.teleport_cluster_name}.${var.aws_dns_route53_zone}:443 --auth=github"

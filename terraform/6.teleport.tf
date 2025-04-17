@@ -20,6 +20,7 @@ resource "aws_instance" "cluster" {
 
   root_block_device {
     encrypted = true
+    volume_size = 25
   }
 
   lifecycle {

@@ -20,7 +20,10 @@ resource "aws_iam_role" "console_access" {
 }
 EOF
 }
-
+resource "aws_iam_role_policy_attachment" "teleport_console_assume_ro" {
+  role       = aws_iam_role.console_access.name
+  policy_arn = "arn:aws-us-gov:iam::aws:policy/ReadOnlyAccess"
+}
 resource "aws_iam_instance_profile" "console_access" {
   name_prefix = "TeleportProfile"
 
