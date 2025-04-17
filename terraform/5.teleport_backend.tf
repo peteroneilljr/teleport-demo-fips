@@ -13,11 +13,6 @@ resource "aws_dynamodb_table" "teleport_state" {
     enabled = true
   }
 
-  # ignore changes to not accidentally destroy table
-  lifecycle {
-    ignore_changes = all
-  }
-
   attribute {
     name = "HashKey"
     type = "S"
@@ -36,6 +31,10 @@ resource "aws_dynamodb_table" "teleport_state" {
     enabled        = true
   }
 
+  # ignore changes to not accidentally destroy table
+  lifecycle {
+    ignore_changes = all
+  }
 }
 
 // DynamoDB table for storing cluster events
@@ -63,11 +62,6 @@ resource "aws_dynamodb_table" "teleport_events" {
     projection_type = "ALL"
   }
 
-  # ignore changes to not accidentally destroy table
-  lifecycle {
-    ignore_changes = all
-  }
-
   attribute {
     name = "SessionID"
     type = "S"
@@ -91,6 +85,11 @@ resource "aws_dynamodb_table" "teleport_events" {
   ttl {
     attribute_name = "Expires"
     enabled        = true
+  }
+
+  # ignore changes to not accidentally destroy table
+  lifecycle {
+    ignore_changes = all
   }
 
 }
