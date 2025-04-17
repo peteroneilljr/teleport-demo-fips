@@ -3,7 +3,7 @@ resource "tls_private_key" "ssh" {
   rsa_bits  = 4096
 }
 resource "aws_key_pair" "ssh" {
-  key_name_prefix = var.teleport_cluster_name
+  key_name_prefix = var.aws_gov_region
   public_key      = tls_private_key.ssh.public_key_openssh
 }
 resource "local_sensitive_file" "ssh" {
