@@ -13,7 +13,20 @@ output teleport_tsh_login {
   value       = "tsh login --proxy=${var.teleport_cluster_name}.${var.aws_dns_route53_zone}:443 --auth=github"
 }
 output teleport_tunnel_dynomodb {
-  value       = "tsh proxy db --tunnel --port 8000 --db-user=${aws_iam_role.teleport_assume_ro.id} dynamodb-backend"
+  value       = <<EOF
+    AWS_REGION=${var.aws_gov_region} \
+    AWS_USE_FIPS_ENDPOINT=true \
+    tsh proxy db --tunnel --port 8000 --db-user=${aws_iam_role.teleport_assume_ro.id} dynamodb-backend
+  EOF
+}
+output teleport_s3_fips {
+  value       = <<EOF
+    tsh apps login aws-console --aws-role ${aws_iam_role.teleport_assume_ro.id}
+
+    AWS_REGION=${var.aws_gov_region} \
+    AWS_USE_FIPS_ENDPOINT=true \
+    tsh -d aws s3 ls
+  EOF
 }
 output teleport_check_certificate {
   value       = <<EOF
