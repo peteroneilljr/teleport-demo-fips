@@ -104,7 +104,7 @@ auth_service:
   authentication:
     type: github 
     local_auth: false
-  message_of_the_day: "Teleport FIPS Demo"
+  message_of_the_day: 'Teleport FIPS Demo'
 ssh_service:
   enabled: yes
   labels:
@@ -146,6 +146,7 @@ create_file "/etc/default/teleport" "
 AWS_STS_REGIONAL_ENDPOINTS=regional
 AWS_REGION=$AWS_REGION
 AWS_USE_FIPS_ENDPOINT=true
+use_fips_endpoint=true 
 "
 # ---------------------------------------------------------------------------- #
 # Setup Teleport as a systemd service
@@ -393,7 +394,6 @@ docker run --detach \
   -v /etc/grafana.ini:/etc/grafana/grafana.ini \
   grafana/grafana
 
-tctl rm app/awsconsole
 create_teleport_resource "grafana" "
 kind: app
 version: v3
@@ -410,7 +410,6 @@ spec:
 # ---------------------------------------------------------------------------- #
 # AWS Console App
 # ---------------------------------------------------------------------------- #
-tctl rm app/awsconsole
 create_teleport_resource "awsconsole" "
 kind: app
 version: v3
